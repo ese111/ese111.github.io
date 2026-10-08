@@ -25,8 +25,6 @@
     ul ul li { margin-bottom:3px; }
     a { color:var(--accent); font-weight:700; text-decoration:underline; overflow-wrap:anywhere; }
     .intro { padding-left:14px; padding-right:5px; min-height:0; margin-bottom:20px; }
-    .portfolio-link { margin:-22px 0 22px 14px; font-size:12px; color:var(--muted); }
-    .portfolio-link a { margin-left:5px; }
     .intro ul { padding-left:0; list-style:none; }
     .intro li { margin-bottom:10px; }
     .rule { border:0; border-top:1px solid var(--rule); margin:0; }
@@ -50,6 +48,9 @@
     .page-two .company > .service:first-child { margin-top:0; }
     .section-title { margin:0 0 12px; font-size:16px; color:var(--accent); }
     .awards, .education { margin:20px 0; }
+    .contact-links { margin:20px 0; }
+    .contact-links p { margin:4px 0; }
+    .contact-links a { margin-left:8px; }
     .rule + .awards, .rule + .education { margin-top:20px; }
     @page { size:A4; margin:0; }
     @media print { body { padding:0; background:white; } .toolbar { display:none; } .page { width:210mm; height:297mm; min-height:0; margin:0; padding:15.9mm 16.4mm; box-shadow:none; break-after:page; page-break-after:always; } .page:last-child { break-after:auto; page-break-after:auto; } }
@@ -61,7 +62,6 @@
   <main>
     <article class="page page-one" aria-label="이력서 1쪽">
       <h1>박흥수 | Android Developer</h1>
-      <p class="portfolio-link">포트폴리오 · <a href="https://ese111.github.io/">ese111.github.io</a></p>
       <section class="intro" aria-label="소개">
         <ul>
           <li>택시 기사 앱을 Android 1인 개발자로 기획·출시해 한 달 만에 배차 성공 1,000건 이상을 달성했습니다.</li>
@@ -155,6 +155,12 @@
         <ul><li>코드스쿼드 Android 코스 수료 · 2022.01 ~ 2022.07
           <ul><li>Kotlin·Android 기초 역량 강화 및 프로젝트 기반 커리큘럼 수료</li></ul>
         </li></ul>
+      </section>
+      <hr class="rule">
+      <section class="contact-links" aria-label="연락처">
+        <h4 class="section-title">연락처</h4>
+        <p>이메일<a href="mailto:feung94@gmail.com">feung94@gmail.com</a></p>
+        <p>포트폴리오<a href="https://ese111.github.io/">ese111.github.io</a></p>
       </section>
     </article>
   </main>
