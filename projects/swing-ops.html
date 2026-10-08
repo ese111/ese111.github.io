@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SWING 운영 개선 프로젝트 상세 — 박흥수">
+  <title>SWING 운영 개선 | 박흥수</title>
+  <link rel="stylesheet" href="project-detail.css">
+</head>
+<body>
+  <header class="site-header"><nav class="nav wrap" aria-label="주요 메뉴"><a class="brand" href="../portfolio-redesign.html#top">HS<span>.</span></a><div class="nav-links"><a href="../portfolio-redesign.html#work">프로젝트</a><a class="back-link" href="../portfolio-redesign.html#work">목록으로 돌아가기</a></div></nav></header>
+  <main>
+    <section class="hero"><div class="hero-grid wrap"><div><p class="eyebrow">03 / SWING MOBILITY · 운영 개선</p><h1>이미 운영 중인 앱의<br>기다림과 실패를 줄이기</h1><p class="hero-copy">SWING Android 앱을 운영하며 사용자가 기다리는 구간과 운영팀이 다시 처리해야 하는 구간을 찾아 개선했습니다. QR 인증, 반납 사진, BLE 잠금 확인, 최근 검색, 운행 중 길찾기를 각각 측정 가능한 문제로 쪼개 해결했습니다.</p></div><dl class="hero-meta"><dt>기간</dt><dd>2022.11 — 2024.11</dd><dt>역할</dt><dd>Android Developer · 운영 개선</dd><dt>핵심</dt><dd>CameraX · ML Kit · Camera2 · BLE</dd></dl></div></section>
+    <div class="page">
+      <section class="intro-grid wrap"><div><p class="section-label">PROBLEM MAP</p><h2>운영 중인 앱에서 먼저 줄여야 했던 기다림과 실패</h2></div><div class="intro-copy"><p>“느리다”거나 “가끔 안 된다”는 말만으로는 수정 범위를 정하기 어렵습니다. QR 인식, 반납 사진, 잠금 확인, 검색 기록을 각각 나눠 사용자가 실제로 기다리는 구간과 실패하면 반납이 막히는 구간을 찾았습니다.</p><p><strong>속도만 높이는 것이 아니라, 실패했을 때 사용자가 다음 행동을 이어갈 수 있는 흐름까지 해결 대상으로 삼았습니다.</strong></p><div class="tags"><span>Kotlin</span><span>CameraX</span><span>ML Kit</span><span>Camera2</span><span>WorkManager</span><span>BLE</span></div></div></section>
+      <section class="section wrap"><div class="section-heading"><p class="section-label">QR 인증</p><h2>QR이 인식될 때까지의 불필요한 일을 줄이기</h2></div><div class="problem"><div><h3>기존 문제</h3><p>초점이 바로 잡히지 않아 QR 인식까지 1초 이상 걸리는 경우가 있었고, Bitmap을 직접 분석하면서 디코드 시간도 추가됐습니다.</p></div><div><h3>변경</h3><p>CameraX의 ImageAnalysis로 ImageProxy를 실시간 수신하고 ML Kit으로 분석했습니다. API 요청 시점에는 로딩 화면을 보여줘 인식 완료 상태도 명확하게 전달했습니다.</p></div></div><div class="stat-grid" style="margin-top:24px"><div class="stat"><strong>1초+</strong><span>개선 전 인식 시간</span></div><div class="stat"><strong>0.5초↓</strong><span>Notion 기록 기준 개선 후</span></div><div class="stat"><strong>2단계</strong><span>CameraX 분석 + ML Kit 디코드</span></div></div></section>
+      <section class="section wrap"><div class="section-heading"><p class="section-label">FAILURE PATHS</p><h2>실패해도 반납이 멈추지 않도록 대체 경로를 만들었습니다.</h2></div><div class="detail-grid"><article class="detail-card"><h3>문제 · 반납 위치가 보이지 않음</h3><p>일반 카메라 사진만으로는 이용자도 반납 위치를 찾기 어렵고 운영팀도 수거 배치를 판단하기 어려웠습니다. Camera2에서 포커스 거리가 2.5f 아래인 후면 카메라를 찾아 광각 촬영을 선택했습니다.</p></article><article class="detail-card"><h3>문제 · 사진 처리 중 화면이 막힘</h3><p>사진 압축과 서버 전송을 화면에서 처리하면 반납 흐름이 길어졌습니다. ImageCapture.OnImageSavedCallback 이후 작업을 WorkManager로 넘기고 제조사별 카메라 인덱스와 Exif 회전 문제를 보정했습니다.</p></article><article class="detail-card"><h3>문제 · 네트워크가 잠금 확인을 막음</h3><p>API만으로 잠금 상태를 확인하면 네트워크가 불안정할 때 반납 자체가 막혔습니다. BLE를 먼저 확인하고 API를 재시도하며, 모두 실패해도 반납 사진을 제출할 수 있게 했습니다.</p></article><article class="detail-card"><h3>문제 · 최근 검색 기록이 느림</h3><p>Room에서 최대 10개 기록을 읽는 과정이 초기 로딩을 늦췄습니다. 객체를 Gson 문자열로 직렬화해 SharedPreferences에서 바로 읽도록 바꿨습니다.</p></article></div><div class="callout"><strong>측정된 결과</strong><br>최근 검색 기록 처리 시간은 약 0.5초에서 0.1초 수준으로 줄었고, QR 인식은 1초 이상 걸리던 구간을 0.5초 이하로 개선했습니다.</div></section>
+      <section class="section wrap"><div class="section-heading"><p class="section-label">운행 중 길찾기</p><h2>탑승 후에도 목적지를 다시 찾을 수 있게</h2></div><div class="body-copy"><p>기존에는 탑승 전에만 경로를 확인할 수 있어, 운행 중 목적지가 바뀌거나 다시 확인해야 할 때 길찾기를 사용할 수 없었습니다.</p><ul><li>운행 중 화면 상단에 검색 버튼 추가</li><li>검색 → 목적지 선택 → 경로 표시 흐름 연결</li><li>운행 중임을 유지하는 BottomSheet 추가</li></ul></div></section>
+      <section class="section wrap"><div class="section-heading"><p class="section-label">RESULT</p><h2>속도와 실패 대응을 운영 성과로 남겼습니다.</h2></div><div class="callout"><strong>해결 결과</strong><br>QR 인식 처리 시간은 1초 이상에서 0.5초 이하로, 최근 검색 기록 처리는 약 0.5초에서 0.1초 수준으로 줄였습니다. 광각 촬영·BLE 재시도·사진 제출 경로를 함께 설계해 특정 장치나 네트워크 상태 때문에 반납이 막히는 상황도 줄였습니다.</div></section>
+      <nav class="next-project wrap" aria-label="다음 프로젝트"><a href="swing-taxi.html">← SWING TAXI 상세</a><a href="yogiyo.html">요기요 Android 상세 →</a></nav>
+    </div>
+  </main>
+  <footer class="footer"><div class="footer-inner wrap"><span>박흥수 · Android Developer</span><span><a href="../portfolio-redesign.html#work">전체 프로젝트 보기</a></span></div></footer>
+  <script>
+    document.querySelectorAll('.intro-grid h2 br, .section-heading h2 br').forEach((breakEl) => breakEl.replaceWith(' '));
+    if (window.matchMedia('(max-width: 560px)').matches) document.querySelectorAll('.hero h1 br').forEach((breakEl) => breakEl.replaceWith(' '));
+  </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SWING TAXI DRIVER Android 앱 프로젝트 상세 — 박흥수">
+  <title>SWING TAXI DRIVER | 박흥수</title>
+  <link rel="stylesheet" href="project-detail.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="주요 메뉴">
+      <a class="brand" href="../portfolio-redesign.html#top">HS<span>.</span></a>
+      <div class="nav-links"><a href="../portfolio-redesign.html#work">프로젝트</a><a class="back-link" href="../portfolio-redesign.html#work">목록으로 돌아가기</a></div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-grid wrap">
+        <div>
+          <p class="eyebrow">01 / SWING MOBILITY · ANDROID</p>
+          <h1>기사님이 콜을 받고, 운행을 끝낼 때까지</h1>
+          <p class="hero-copy">SWING TAXI DRIVER 앱을 기획 단계부터 배포까지 Android 1인 개발로 맡았습니다. 기사 앱이 백그라운드에 있어도 콜을 놓치지 않고, 들어온 요청을 순서대로 처리하며, 운행 중에는 지도와 상태를 안정적으로 보여주는 흐름을 만들었습니다.</p>
+        </div>
+        <dl class="hero-meta">
+          <dt>기간</dt><dd>2024.04.29 — 2024.11</dd>
+          <dt>역할</dt><dd>Android 1인 개발 · 기획·설계·운영</dd>
+          <dt>범위</dt><dd>기사 앱 · 테스트 앱 · 실시간 호출</dd>
+        </dl>
+      </div>
+    </section>
+
+    <div class="page">
+      <section class="intro-grid wrap">
+        <div><p class="section-label">PROJECT</p><h2>기능보다 먼저, 운행의 흐름을 정의했습니다.</h2></div>
+        <div class="intro-copy">
+          <p>승객의 호출이 들어오면 기사의 위치를 서버에 올리고, 근처 콜을 알리고, 기사가 수락한 뒤 목적지까지 운행하는 흐름이 이어집니다. 앱이 화면에 떠 있을 때만 동작해서는 안 됐고, 호출이 여러 개 들어오거나 앱이 백그라운드에 있어도 상태가 꼬이지 않아야 했습니다.</p>
+          <p><strong>제가 맡은 핵심은 화면 구현보다 이 흐름을 Android의 생명주기와 상태 변화에 맞게 연결하는 일이었습니다.</strong></p>
+          <div class="tags"><span>Kotlin</span><span>Jetpack Compose</span><span>WebSocket / STOMP</span><span>Foreground Service</span><span>멀티 모듈</span></div>
+        </div>
+      </section>
+
+      <section class="section wrap">
+        <div class="section-heading"><p class="section-label">PROBLEM MAP</p><h2>기사 앱에서 먼저 풀어야 했던 네 가지 문제</h2></div>
+        <div class="detail-grid">
+          <article class="detail-card"><h3>백그라운드에서도 콜을 받아야 함</h3><p>기사가 다른 앱을 보고 있어도 호출을 놓치면 배차가 끊겼습니다. 위치와 콜 수신을 Foreground Service로 분리해 화면이 보이지 않아도 운행 상태를 유지했습니다.</p></article>
+          <article class="detail-card"><h3>여러 콜의 순서가 꼬이는 문제</h3><p>호출이 동시에 들어오면 만료된 요청과 새 요청이 섞일 수 있었습니다. Queue로 유효한 콜의 순서를 관리하고 수락·거절 상태를 명확히 나눴습니다.</p></article>
+          <article class="detail-card"><h3>화면과 백그라운드 상태 불일치</h3><p>Activity가 다시 만들어져도 서비스와 화면이 같은 운행 상태를 봐야 했습니다. Flow 기반 이벤트 버스로 서비스 이벤트를 화면에 전달했습니다.</p></article>
+          <article class="detail-card"><h3>배포 전 콜 테스트가 불가능한 문제</h3><p>정식 서비스에 배포하기 전에는 실제 승객 콜을 발생시킬 방법이 없어 기사 앱의 수락·거절·운행 흐름을 검증할 수 없었습니다. 외부에서 테스트용 콜을 만들 수 있는 앱을 별도로 제작해 배포 전에도 전체 흐름을 검증할 수 있게 했습니다.</p></article>
+        </div>
+      </section>
+
+      <section class="section wrap">
+        <div class="section-heading"><p class="section-label">PROBLEM → DECISION</p><h2>실시간 호출을 안정적으로 받고 상태가 끊기는 지점을 없앴습니다.</h2></div>
+        <div class="problem">
+          <div><h3>문제 · 여러 콜과 앱 상태</h3><p>콜 요청이 여러 개 들어오면 만료된 요청을 제외하고 순서대로 보여줘야 했습니다. Activity가 사라져도 Service는 살아 있어야 했고, 수락 후에는 화면과 백그라운드 로직이 같은 상태를 봐야 했습니다.</p></div>
+          <div><h3>선택 · WebSocket/STOMP 직접 구성</h3><p>실시간 위치 업로드와 콜 수신을 연결하기 위해 WebSocket/STOMP 모듈을 직접 구성했습니다. Android 공식 지원이 부족한 부분은 오픈소스 구현을 분석해 Kotlin 환경에 맞게 커스텀하고, 수신한 요청은 Queue로 관리했습니다.</p></div>
+        </div>
+        <div class="detail-grid" style="margin-top:18px">
+          <article class="detail-card"><h3>Foreground Service</h3><p>위치 수집과 콜 수신을 명시적인 서비스 상태로 두어, 사용자가 현재 위치가 공유되고 콜을 받을 수 있는 상태임을 알 수 있게 했습니다.</p></article>
+          <article class="detail-card"><h3>Queue + Flow 상태 전달</h3><p>Queue로 콜 순서를 보장하고 Service와 Activity 사이에는 Flow 기반 이벤트 버스를 두었습니다. 화면이 다시 만들어져도 수신 순서와 운행 상태를 이어갈 수 있게 했습니다.</p></article>
+          <article class="detail-card"><h3>Compose 지도 모듈</h3><p>AndroidBindingView를 사용해 네이버 지도를 Compose 안에서 사용할 수 있는 모듈을 만들고, 마커와 지도 상태를 외부에서 관리할 수 있도록 구성했습니다.</p></article>
+        </div>
+      </section>
+
+      <section class="section wrap">
+        <div class="section-heading"><p class="section-label">RESULT</p><h2>문제를 해결한 결과 서비스를 실제로 운영했습니다.</h2></div>
+        <div class="stat-grid">
+          <div class="stat"><strong>1인</strong><span>기사 앱 기획·설계·개발·배포</span></div>
+          <div class="stat"><strong>1,000+</strong><span>출시 한 달 만에 달성한 배차 성공 건수</span></div>
+          <div class="stat"><strong>QA</strong><span>실차 탑승 없이 택시팀이 호출·수락·운행 흐름을 검증할 수 있는 테스트 환경 구축</span></div>
+        </div>
+        <div class="callout"><strong>해결 결과</strong><br>Android 1인 개발로 기사 앱을 기획·설계·배포했고, 출시 한 달 만에 배차 성공 1,000건 이상을 만들었습니다. 실시간 기능은 연결 자체보다 끊겼을 때의 상태까지 설계해야 운영 가능한 제품이 된다는 것을 확인했습니다.</div>
+      </section>
+
+      <section class="section wrap">
+        <div class="section-heading"><p class="section-label">SCREENS</p><h2>실제 화면과 테스트 흐름</h2></div>
+        <div class="gallery">
+          <figure><img src="assets/swing-taxi/call-waiting.png" alt="SWING TAXI 콜 대기 화면" loading="lazy"><figcaption>콜 대기 화면</figcaption></figure>
+          <figure><img src="assets/swing-taxi/driver-call.png" alt="SWING TAXI 콜 알림 화면" loading="lazy"><figcaption>콜 알림과 요청 처리</figcaption></figure>
+          <figure><img src="assets/swing-taxi/ride-map.png" alt="SWING TAXI 운행 지도 화면" loading="lazy"><figcaption>운행 중 지도와 상태</figcaption></figure>
+        </div>
+      </section>
+
+      <nav class="next-project wrap" aria-label="다음 프로젝트">
+        <a href="aisu.html">← AISU 상세</a><a href="swing-ops.html">SWING 운영 개선 상세 →</a>
+      </nav>
+    </div>
+  </main>
+  <footer class="footer"><div class="footer-inner wrap"><span>박흥수 · Android Developer</span><span><a href="../portfolio-redesign.html#work">전체 프로젝트 보기</a></span></div></footer>
+  <script>
+    document.querySelectorAll('.intro-grid h2 br, .section-heading h2 br').forEach((breakEl) => breakEl.replaceWith(' '));
+    if (window.matchMedia('(max-width: 560px)').matches) document.querySelectorAll('.hero h1 br').forEach((breakEl) => breakEl.replaceWith(' '));
+  </script>
+</body>
+</html>

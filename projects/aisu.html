@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AISU Android 앱 프로젝트 상세 — 박흥수">
+  <title>AISU | 박흥수</title>
+  <link rel="stylesheet" href="project-detail.css">
+</head>
+<body>
+  <header class="site-header"><nav class="nav wrap" aria-label="주요 메뉴"><a class="brand" href="../portfolio-redesign.html#top">HS<span>.</span></a><div class="nav-links"><a href="../portfolio-redesign.html#work">프로젝트</a><a class="back-link" href="../portfolio-redesign.html#work">목록으로 돌아가기</a></div></nav></header>
+  <main>
+    <section class="hero"><div class="hero-grid wrap"><div><p class="eyebrow">02 / TRICOCUBE · CO-FOUNDER</p><h1>제품을 만들고,<br>사업의 결과까지 확인하기</h1><p class="hero-copy">AISU는 수어 사전과 커뮤니티를 함께 제공하는 서비스입니다. 공동창업자로서 문제 정의와 제품 기획, 개발팀 리딩, Android 구현을 맡았고, 예비창업패키지 최우수 통과와 B2B 계약을 통한 실매출까지 제품의 결과를 사업 성과로 연결했습니다.</p></div><dl class="hero-meta"><dt>기간</dt><dd>2025.07 — 2026.01</dd><dt>역할</dt><dd>공동창업자 · 개발팀 리딩 · Android</dd><dt>성과</dt><dd>예비창업패키지 최우수 통과 · B2B 계약·실매출</dd></dl></div></section>
+    <div class="page">
+      <section class="intro-grid wrap"><div><p class="section-label">PROJECT</p><h2>기술 구현 전에 서비스의 사용자를 먼저 정의했습니다.</h2></div><div class="intro-copy"><p>수어 통역사 부족과 수어 데이터의 파편화라는 문제에서 출발했습니다. 수어 사용자를 위한 사전·검색·커뮤니티를 만들되, 글자를 읽는 데 익숙하지 않은 사용자도 사용할 수 있어야 했습니다.</p><p><strong>코파운더로서 제품을 기획하고 팀을 이끌어 서비스를 출시했고, 최우수 통과·B2B 계약·실매출이라는 결과를 이끌어냈습니다.</strong></p><div class="tags"><span>Kotlin</span><span>Jetpack Compose</span><span>ExoPlayer</span><span>WebView Bridge</span><span>멀티 모듈</span></div></div></section>
+      <section class="section wrap"><div class="section-heading"><p class="section-label">PROBLEM</p><h2>사용자가 겪던 세 가지 문제</h2></div><div class="detail-grid"><article class="detail-card"><h3>문제 · 흩어진 수어 데이터</h3><p>지역과 국가에 따라 수어가 달라 사용자가 원하는 표현을 찾기 어려웠습니다. 직접 촬영한 영상과 기존 데이터를 함께 구성해 사전과 검색에서 필요한 표현을 찾을 수 있게 했습니다.</p></article><article class="detail-card"><h3>문제 · 글자를 중심으로 한 UI</h3><p>한글이나 영어를 읽는 데 익숙하지 않은 사용자에게 텍스트 중심 화면은 진입 장벽이었습니다. 상징적인 마크와 짧은 단어 중심으로 화면을 기획해 정보를 이해하는 단계를 줄였습니다.</p></article><article class="detail-card"><h3>문제 · 영상 서비스의 데이터 부담</h3><p>커뮤니티의 영상이 자동 재생되면 데이터 사용량과 대기 시간이 커질 수 있었습니다. 캐싱과 재생 최소화를 적용하고, 앱에서는 사용자가 터치한 영상만 재생하도록 했습니다.</p></article></div><div class="callout"><strong>제품으로 해결한 결과</strong><br>세 가지 문제를 해결하는 서비스를 실제로 출시했고, 예비창업패키지 최우수 통과와 B2B 계약을 통해 실매출을 이끌어냈습니다.</div></section>
+      <section class="section wrap"><div class="section-heading"><p class="section-label">PROBLEM &amp; SOLUTION</p><h2>문제를 정의하고 구조로 해결한 방식</h2></div><div class="detail-grid"><article class="detail-card"><h3>Player가 화면에 남는 문제</h3><p>검색어 랭킹을 구현하며 LazyColumn 안에 Player를 직접 배치했을 때, 화면을 이동한 뒤 이전 영상의 잔상이 남고 재생 상태가 꼬였습니다. 수어 사전처럼 영상이 많은 화면에서는 리스트와 Player의 생명주기를 분리해서 관리해야 했습니다.</p></article><article class="detail-card"><h3>UiState와 ViewModel로 상태 분리</h3><p>화면 전환 시 UiState에 Empty 상태를 두고 기존 Player 리스트를 먼저 제거했습니다. ExoPlayer 객체는 외부 ViewModel에서 리스트로 관리해 각 Composable이 자신의 화면 상태와 Player 상태를 섞지 않도록 해결했습니다.</p></article><article class="detail-card"><h3>잦은 UI 변경과 빠른 배포</h3><p>초기 서비스는 화면과 콘텐츠를 자주 바꿔야 했습니다. 커뮤니티와 홈 화면은 WebView로 구현해 빠르게 수정·배포할 수 있도록 하고, 네이티브 앱에는 꼭 필요한 기능만 남겼습니다.</p></article><article class="detail-card"><h3>앱과 웹을 연결하는 브릿지</h3><p>WebView 안에서도 카메라와 로그인 같은 앱 기능을 사용할 수 있도록 앱과 웹 사이의 Bridge 인터페이스를 설계하고 세팅했습니다. 호출 가능한 기능과 이벤트, 데이터 전달 방식을 정리해 두 환경이 안정적으로 통신하도록 구성했습니다.</p></article></div><div class="callout"><strong>핵심은 기술을 나누는 기준을 세운 것</strong><br>영상 재생처럼 네이티브 제어가 중요한 영역은 상태를 분리해 안정성을 확보하고, 변화가 잦은 화면은 WebView와 브릿지로 빠르게 실험할 수 있게 했습니다.</div></section>
+      <section class="section wrap"><div class="section-heading"><p class="section-label">OUTCOME & LEADERSHIP</p><h2>해결한 문제를<br>사업 성과와 팀의 실행력으로 연결했습니다.</h2></div><div class="stat-grid"><div class="stat"><strong>최우수</strong><span>예비창업패키지 통과</span></div><div class="stat"><strong>B2B</strong><span>계약 성사와 실매출 발생</span></div><div class="stat"><strong>Lead</strong><span>개발팀 우선순위·일정·구현 리딩</span></div></div><div class="detail-grid" style="margin-top:24px"><article class="detail-card"><h3>사업 성과까지 확인</h3><p>세 가지 사용자 문제를 제품으로 해결한 뒤 예비창업패키지 최우수 통과와 B2B 계약을 거쳐 실제 매출이 발생하는 단계까지 이끌어냈습니다.</p></article><article class="detail-card"><h3>개발팀 리딩</h3><p>제품 방향과 우선순위를 개발 과제로 나누고, Android 구현 범위와 일정을 조율하며 팀이 실제 출시까지 갈 수 있도록 리딩했습니다.</p></article></div><div class="callout"><strong>이 프로젝트에서 맡은 역할</strong><br>코파운더로서 문제 정의부터 제품 방향을 정하고, 개발팀이 실행할 수 있는 단위로 나눈 뒤 Android 결과물과 사업 성과로 검증했습니다.</div></section>
+      <section class="section wrap"><div class="section-heading"><p class="section-label">SERVICE DEMO</p><h2>해결한 제품의 실제 흐름</h2></div><div class="media-frame"><video controls preload="metadata" playsinline title="AISU 서비스 시연"><source src="../AISU_시연.mp4" type="video/mp4">브라우저에서 영상을 재생할 수 없습니다. 영상 파일을 직접 열어 확인해 주세요.</video></div></section>
+      <nav class="next-project wrap" aria-label="다음 프로젝트"><a href="swing-taxi.html">← SWING TAXI 상세</a><a href="swing-ops.html">SWING 운영 개선 상세 →</a></nav>
+    </div>
+  </main>
+  <footer class="footer"><div class="footer-inner wrap"><span>박흥수 · Android Developer</span><span><a href="../portfolio-redesign.html#work">전체 프로젝트 보기</a></span></div></footer>
+  <script>
+    document.querySelectorAll('.intro-grid h2 br, .section-heading h2 br').forEach((breakEl) => breakEl.replaceWith(' '));
+    if (window.matchMedia('(max-width: 560px)').matches) document.querySelectorAll('.hero h1 br').forEach((breakEl) => breakEl.replaceWith(' '));
+  </script>
+</body>
+</html>
