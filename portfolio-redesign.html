@@ -62,7 +62,10 @@
     .brand span { color: var(--accent); }
     .nav-links { display: flex; align-items: center; gap: 26px; color: var(--ink-soft); font-size: 14px; font-weight: 700; }
     .nav-links a:hover { color: var(--accent); }
-    .nav-cta { padding: 8px 0; border-bottom: 1px solid currentColor; color: var(--accent-dark); }
+    .nav-links > a:not(.nav-cta) { position: relative; padding: 8px 0 12px; }
+    .nav-links > a:not(.nav-cta)::after { position: absolute; right: 0; bottom: 3px; left: 0; height: 2px; background: var(--accent); content: ""; transform: scaleX(0); transform-origin: center; transition: transform .2s ease; }
+    .nav-links > a:not(.nav-cta).is-active::after { transform: scaleX(1); }
+    .nav-cta { padding: 8px 0; color: var(--accent-dark); }
     .nav-cta:hover { color: var(--accent); }
 
     .hero { padding: 132px 0 92px; overflow: hidden; }
@@ -387,5 +390,23 @@
     <div class="footer-inner wrap"><span>박흥수 · Android Developer</span><span>© <span id="year">2026</span> Heungsu Park</span></div>
   </footer>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+    (() => {
+      const items = [...document.querySelectorAll('.nav-links a[href^="#"]')]
+        .map((link) => ({ link, section: document.querySelector(link.hash) }))
+        .filter(({ section }) => section);
+      const updateActiveSection = () => {
+        let current = items[0];
+        const marker = window.innerHeight * 0.38;
+        items.forEach((item) => {
+          if (item.section.getBoundingClientRect().top <= marker) current = item;
+        });
+        items.forEach(({ link }) => link.classList.toggle('is-active', link === current.link));
+      };
+      window.addEventListener('scroll', updateActiveSection, { passive: true });
+      window.addEventListener('resize', updateActiveSection);
+      updateActiveSection();
+    })();
+  </script>
 </body>
 </html>
