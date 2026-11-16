@@ -1,11 +1,12 @@
+<!-- Visual direction adapted with unslop by @heydamir, CC BY 4.0. -->
 <!doctype html>
 <html lang="ko">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="실서비스를 만들고 운영해온 Android Developer 박흥수의 포트폴리오">
-  <meta name="theme-color" content="#f0f1eb">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%233f6b48'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Georgia,serif' font-size='34' font-weight='700' fill='white'%3EHS%3C/text%3E%3C/svg%3E">
+  <meta name="theme-color" content="#f2f2f0">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23111111'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial,sans-serif' font-size='34' font-weight='700' fill='white'%3EHS%3C/text%3E%3C/svg%3E">
   <title>박흥수 | Android Developer</title>
   <style>
     :root {
@@ -194,6 +195,66 @@
       .footer-inner { display: block; }
       .footer-inner span { display: block; margin-top: 5px; }
     }
+
+    /* Unslop direction: quiet monochrome, clear hierarchy, no decorative texture. */
+    :root {
+      --ink: #111111;
+      --ink-soft: #3f3f3f;
+      --muted: #737373;
+      --line: #d2d2d2;
+      --surface: #f2f2f0;
+      --paper: #ffffff;
+      --accent: #111111;
+      --accent-dark: #111111;
+      --accent-pale: #e9e9e7;
+      --shadow: none;
+    }
+
+    body::before { display: none; }
+    a:focus-visible, button:focus-visible { outline-color: var(--ink); }
+    .site-header { border-bottom-color: var(--line); background: rgba(242, 242, 240, .94); backdrop-filter: blur(8px); }
+    .nav-links a:hover, .nav-cta:hover, .card-link:hover { color: var(--ink); }
+    .nav-links > a:not(.nav-cta)::after { height: 1px; }
+    .hero { padding-top: 108px; padding-bottom: 78px; }
+    .hero h1 { max-width: 790px; font-size: clamp(40px, 5.4vw, 64px); font-weight: 750; }
+    .hero h1 em { color: var(--ink); text-decoration: underline; text-decoration-thickness: .06em; text-underline-offset: .1em; }
+    .hero h1, .hero-copy, .hero-note p, .section h2, .work-card h3, .case-content h3, .principle h3, .timeline h3 { word-break: keep-all; }
+    .hero-note { border-left-width: 1px; }
+    .hero-note strong { color: var(--ink); }
+    .hero-note-line { background: var(--ink); }
+    .button { border-radius: 0; border-color: var(--ink); }
+    .button.primary { background: var(--ink); }
+    .button.primary:hover { background: #333333; }
+    .button.secondary { color: var(--ink); }
+    .button.secondary:hover { background: var(--accent-pale); }
+    .section { padding-top: 88px; padding-bottom: 88px; }
+    .section h2 { font-size: clamp(30px, 3.4vw, 43px); font-weight: 750; }
+    .metric strong, .section-kicker, .card-type, .case-label, .principle-number { color: var(--ink); }
+    .metric strong { font-size: 32px; font-weight: 700; }
+    .work-card { min-height: 310px; transition: background .18s ease; }
+    .work-card:hover { transform: none; background: #f7f7f7; }
+    .work-card.featured { background: var(--accent-pale); border-top-width: 2px; border-top-color: var(--ink); }
+    .work-card.featured:hover { background: #e2e2e0; }
+    .work-card h3 { font-size: 28px; font-weight: 750; }
+    .card-result, .card-link, .skill-group h3, .experience-summary strong { color: var(--ink); }
+    .case-study { gap: 42px; padding: 28px 0; }
+    .case-content h3 { font-size: 25px; font-weight: 750; }
+    .case-points li::before { width: 4px; height: 4px; border-radius: 0; background: var(--ink); }
+    .principle { border-top-width: 1px; border-top-color: var(--ink); }
+    .timeline li { border-left-color: var(--line); }
+    .timeline li::before { border-color: var(--surface); background: var(--ink); box-shadow: 0 0 0 1px var(--ink); }
+    .experience-summary { border-left-width: 1px; }
+    .contact { background: var(--ink); color: #ffffff; }
+    .contact .section-kicker, .contact-email { color: #ffffff; }
+    .contact .button { border-color: #ffffff; color: #ffffff; }
+    .contact .button:hover { background: #ffffff; color: var(--ink); }
+    .footer { border-top: 1px solid var(--line); }
+
+    @media (max-width: 640px) {
+      .hero { padding-top: 72px; padding-bottom: 60px; }
+      .hero h1 { font-size: clamp(35px, 11vw, 50px); }
+      .section { padding-top: 62px; padding-bottom: 62px; }
+    }
   </style>
 </head>
 <body>
@@ -252,7 +313,7 @@
             <p>택시 기사 앱을 Android 1인 개발자로 기획·설계·개발하고 출시와 운영까지 맡았습니다.</p>
             <ul class="tag-list"><li>Kotlin</li><li>Jetpack Compose</li><li>WebSocket/STOMP</li><li>멀티 모듈</li></ul>
             <div class="card-result"><span>결과</span>출시 한 달 만에 배차 성공 1,000건 이상</div>
-            <a class="card-link" href="projects/swing-taxi.html">프로젝트 상세 보기 →</a>
+            <a class="card-link" href="projects-unslop/swing-taxi.html">프로젝트 상세 보기 →</a>
           </article>
           <article class="work-card supporting">
             <div class="card-top"><span class="card-type">현재 업무</span><span class="card-date">2026.03 — 현재</span></div>
@@ -260,15 +321,15 @@
             <p>운영 중인 앱의 안정성을 개선하고, 여러 화면을 단계적으로 현대화하며, 팀의 반복 작업을 줄이는 개발 도구를 만들고 있습니다.</p>
             <ul class="tag-list"><li>ANR·관측성</li><li>점진적 Compose 전환</li><li>모듈화</li><li>AI 개발 도구</li></ul>
             <div class="card-result"><span>담당</span>운영 안정성 · UI 현대화 · 개발 생산성</div>
-            <a class="card-link" href="projects/yogiyo.html">프로젝트 상세 보기 →</a>
+            <a class="card-link" href="projects-unslop/yogiyo.html">프로젝트 상세 보기 →</a>
           </article>
           <article class="work-card collaboration">
             <div class="card-top"><span class="card-type">창업·리딩</span><span class="card-date">2025.07 — 2026.01</span></div>
             <h3>AISU</h3>
             <p>수어 사전·커뮤니티 서비스를 공동창업하고 문제 정의·사업 방향·제품 설계부터 Android 개발팀 리딩과 출시까지 직접 맡았습니다.</p>
             <ul class="tag-list"><li>공동창업</li><li>제품 설계</li><li>Android</li><li>개발팀 리딩</li></ul>
-            <div class="card-result"><span>성과</span>예비창업패키지 최우수 통과 · B2B 계약·계약금 수령</div>
-            <a class="card-link" href="projects/aisu.html">프로젝트 상세 보기 →</a>
+            <div class="card-result"><span>성과</span>예비창업패키지 최우수 통과 · B2B 계약·실매출 발생</div>
+            <a class="card-link" href="projects-unslop/aisu.html">프로젝트 상세 보기 →</a>
           </article>
           <article class="work-card performance">
             <div class="card-top"><span class="card-type">운영·개선</span><span class="card-date">SWING Mobility</span></div>
@@ -276,7 +337,7 @@
             <p>운영 중인 SWING Android 앱에서 QR 인증, 반납 카메라, BLE 잠금 확인, 최근 검색과 길찾기 흐름을 개선했습니다.</p>
             <ul class="tag-list"><li>QR 인증</li><li>CameraX·ML Kit</li><li>BLE</li><li>운영 UX</li></ul>
             <div class="card-result"><span>대표 성과</span>QR 1초+ → 0.5초↓ · 검색 기록 0.5초 → 0.1초</div>
-            <a class="card-link" href="projects/swing-ops.html">프로젝트 상세 보기 →</a>
+            <a class="card-link" href="projects-unslop/swing-ops.html">프로젝트 상세 보기 →</a>
           </article>
         </div>
       </div>
@@ -312,8 +373,8 @@
           <p class="case-label">03 / 창업과 리딩</p>
           <div class="case-content">
             <h3>제품을 설계하고 사업 성과까지 이끌기</h3>
-            <p>AISU에서는 공동창업자로서 수어 사용자 문제를 사업 기회로 정의하고, 서비스 구조·기능 우선순위·UI/UX·Android 구현 방향을 직접 설계했습니다. 개발팀의 우선순위와 일정을 리딩하며 제품을 출시했고, 예비창업패키지 최우수 통과와 B2B 계약·계약금 수령으로 연결했습니다.</p>
-            <ul class="case-points"><li>창업: 수어 사용자 문제·사업 방향·제품 요구사항 정의</li><li>설계: 서비스 구조·UI/UX·Android 구현 범위 직접 결정</li><li>리딩: 개발팀 우선순위·일정·기술 의사결정 조율</li><li>성과: 예비창업패키지 최우수 통과 → B2B 계약 → 계약금 수령</li></ul>
+            <p>AISU에서는 공동창업자로서 수어 사용자 문제를 사업 기회로 정의하고, 서비스 구조·기능 우선순위·UI/UX·Android 구현 방향을 직접 설계했습니다. 개발팀의 우선순위와 일정을 리딩하며 제품을 출시했고, 예비창업패키지 최우수 통과와 B2B 계약·실매출 발생으로 연결했습니다.</p>
+            <ul class="case-points"><li>창업: 수어 사용자 문제·사업 방향·제품 요구사항 정의</li><li>설계: 서비스 구조·UI/UX·Android 구현 범위 직접 결정</li><li>리딩: 개발팀 우선순위·일정·기술 의사결정 조율</li><li>성과: 예비창업패키지 최우수 통과 → B2B 계약 → 실매출 발생</li></ul>
           </div>
         </article>
       </div>
