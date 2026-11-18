@@ -291,8 +291,8 @@
       </div>
       <div class="metrics wrap" aria-label="주요 성과">
         <div class="metric"><strong>4년+</strong><span>Android 앱 개발·출시·운영 경험</span></div>
-        <div class="metric"><strong>1,000+</strong><span>출시 한 달 만에 달성한 배차 성공 건수</span></div>
-        <div class="metric"><strong>0.5초↓</strong><span>QR 인식 처리 시간 개선 결과</span></div>
+        <div class="metric"><strong>1,000+</strong><span>출시 후 첫 달 서버 집계 기준 배차 성공 건수</span></div>
+        <div class="metric"><strong>0.5초 이하</strong><span>앱 로그 기준 QR 인증 소요 시간</span></div>
       </div>
     </section>
 
@@ -312,14 +312,14 @@
             <h3>SWING TAXI</h3>
             <p>택시 기사 앱을 Android 1인 개발자로 기획·설계·개발하고 출시와 운영까지 맡았습니다.</p>
             <ul class="tag-list"><li>Kotlin</li><li>Jetpack Compose</li><li>WebSocket/STOMP</li><li>멀티 모듈</li></ul>
-            <div class="card-result"><span>결과</span>출시 한 달 만에 배차 성공 1,000건 이상</div>
+            <div class="card-result"><span>서비스 지표</span>출시 후 첫 달 서버 집계 기준 배차 성공 1,000건 이상</div>
             <a class="card-link" href="projects-unslop/swing-taxi.html">프로젝트 상세 보기 →</a>
           </article>
           <article class="work-card supporting">
             <div class="card-top"><span class="card-type">현재 업무</span><span class="card-date">2026.03 — 현재</span></div>
             <h3>요기요 Android</h3>
             <p>Android 앱 안정성 개선과 Compose 전환을 맡고 있습니다. AI 코딩 도구를 활용해 iOS 앱과 BFF(Frontyo Service) 기능도 직접 구현하고, 모바일 팀 공용 개발 도구도 만들고 있습니다.</p>
-            <ul class="tag-list"><li>ANR·관측성</li><li>Compose·모듈화</li><li>iOS·Frontyo Service</li><li>팀 개발 도구</li></ul>
+            <ul class="tag-list"><li>ANR 원인 분석·추적</li><li>Compose·모듈화</li><li>iOS·Frontyo Service</li><li>팀 개발 도구</li></ul>
             <div class="card-result"><span>담당</span>Android · 크로스 플랫폼 기능 · 개발 생산성</div>
             <a class="card-link" href="projects-unslop/yogiyo.html">프로젝트 상세 보기 →</a>
           </article>
@@ -336,7 +336,7 @@
             <h3>SWING 앱 운영·개선</h3>
             <p>운영 중인 SWING Android 앱에서 QR 인증, 반납 카메라, BLE 잠금 확인, 최근 검색과 길찾기 흐름을 개선했습니다.</p>
             <ul class="tag-list"><li>QR 인증</li><li>CameraX·ML Kit</li><li>BLE</li><li>운영 UX</li></ul>
-            <div class="card-result"><span>대표 성과</span>QR 1초+ → 0.5초↓ · 검색 기록 0.5초 → 0.1초</div>
+            <div class="card-result"><span>로그 측정</span>QR 인증 1초 이상 → 0.5초 이하 · 검색 기록 0.5초 → 0.1초</div>
             <a class="card-link" href="projects-unslop/swing-ops.html">프로젝트 상세 보기 →</a>
           </article>
         </div>
@@ -358,7 +358,7 @@
           <div class="case-content">
             <h3>콜을 놓치고 상태가 끊기는 문제를 운영 가능한 흐름으로</h3>
             <p>기사 앱은 화면이 떠 있을 때만 동작해서는 안 됐습니다. 백그라운드에서도 콜을 받아야 했고, 여러 콜이 들어와도 순서가 꼬이지 않아야 했습니다. Foreground Service, Queue, Flow 이벤트 버스로 화면과 운행 상태를 연결했습니다.</p>
-            <ul class="case-points"><li>문제: 백그라운드에서 콜을 놓치면 배차 흐름이 끊김</li><li>해결: WebSocket/STOMP와 Foreground Service로 호출·위치 유지</li><li>문제: 여러 콜과 화면 재생성으로 상태가 꼬임</li><li>성과: Android 1인 개발 출시 후 한 달 배차 성공 1,000건+</li></ul>
+            <ul class="case-points"><li>문제: 백그라운드에서 콜을 놓치면 배차 흐름이 끊김</li><li>해결: WebSocket/STOMP와 Foreground Service로 호출·위치 유지</li><li>문제: 여러 콜과 화면 재생성으로 상태가 꼬임</li><li>서비스 지표: 출시 후 첫 달 서버 집계 기준 배차 성공 1,000건+</li></ul>
           </div>
         </article>
         <article class="case-study">
@@ -366,7 +366,7 @@
           <div class="case-content">
             <h3>기다림과 실패를 측정하고, 다음 행동까지 연결하기</h3>
             <p>QR 인식과 최근 검색 기록은 사용자가 바로 체감하는 지연이었고, 카메라·BLE·네트워크 실패는 반납 자체를 막을 수 있었습니다. 처리 구간을 나눠 원인을 찾고, 속도 개선과 대체 경로를 함께 설계했습니다.</p>
-            <ul class="case-points"><li>문제: QR 인식 1초 이상 → CameraX·ML Kit으로 0.5초 이하</li><li>문제: 검색 기록 약 0.5초 → 저장 방식 변경으로 0.1초 수준</li><li>문제: 네트워크가 잠금 확인을 막음 → BLE·API 재시도와 사진 제출 경로</li><li>성과: 운영 중인 반납 흐름의 기다림과 실패 대응 개선</li></ul>
+            <ul class="case-points"><li>로그 측정: QR 인증 1초 이상 → CameraX·ML Kit 적용 후 0.5초 이하</li><li>문제: 검색 기록 약 0.5초 → 저장 방식 변경으로 0.1초 수준</li><li>문제: 네트워크가 잠금 확인을 막음 → BLE·API 재시도와 사진 제출 경로</li><li>성과: 운영 중인 반납 흐름의 기다림과 실패 대응 개선</li></ul>
           </div>
         </article>
         <article class="case-study">
