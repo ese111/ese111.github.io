@@ -64,7 +64,7 @@
       <h1>박흥수 | Android Developer</h1>
       <section class="intro" aria-label="소개">
         <ul>
-          <li>택시 기사 앱을 Android 1인 개발자로 기획·출시해 한 달 만에 배차 성공 1,000건 이상을 달성했습니다.</li>
+          <li>택시 기사 앱을 Android 1인 개발자로 기획·출시했습니다. 출시 후 첫 달 서버 집계 기준 배차 성공은 1,000건 이상이었습니다.</li>
           <li>수어 서비스 AISU를 공동창업해 제품 기획과 개발팀을 이끌고 출시했으며, 예비창업패키지 최우수 통과와 대기업 B2B 계약 성사·계약금 수령까지 연결했습니다.</li>
           <li>운영 중인 요기요 Android 앱에서 여러 화면의 Compose 전환, ANR 원인 분석, 내부 개발 도구 개선을 진행했습니다.</li>
         </ul>
@@ -84,7 +84,7 @@
           <h4 class="service">요기요 · 배달 주문 서비스</h4>
           <ul class="service-detail">
             <li>로그인·회원가입·주문·요마트 화면을 피처 플래그 기반으로 Compose 전환하고 공용 입력 컴포넌트를 도입</li>
-            <li>콜드 스타트·화면 진입 중 발생하는 ANR 원인을 분석해 컴포넌트 매핑·리스트 데이터 준비·Keystore 초기화·asset 파싱을 분리하고 최종 UI 반영만 메인 스레드에서 수행</li>
+            <li>콜드 스타트·화면 진입 중 발생한 ANR의 원인을 추적하고, 컴포넌트 매핑·리스트 준비·Keystore 초기화·asset 파싱을 백그라운드로 분리해 메인 스레드 작업을 줄임</li>
             <li>Baseline Profile 적용 전후 콜드스타트 TTID 중앙값을 665.8ms에서 556.3ms로 개선 (SM-S901N, Android 16, 10회 측정)</li>
             <li>AI 코딩 도구를 활용해 즉시할인·YPX 멤버십 기능의 iOS 앱과 BFF(Frontyo Service) 코드를 구현</li>
             <li>app 공용 코드를 core:presentation으로, 로그인 코드를 feature:login으로 분리하고 feature 간 직접 의존성을 제거</li>
@@ -127,7 +127,7 @@
             <li>TADA 택시 탑승 흐름 구현: 출발지·목적지·탑승지 선택부터 호출, 결제 후 등급 업그레이드까지 개발</li>
             <li>길찾기 장소 자동 검색, 연락처 기반 라이드 선물, 외국인 사용자의 언어 설정 및 보증금 결제·환급 기능 개발</li>
             <li>쿠폰함·자전거 반납·QR 입력 화면 등 신규 기능에 Jetpack Compose 도입</li>
-            <li>QR 인증을 ML Kit과 CameraX 기반으로 개선해 인식 시간을 1초 이상에서 0.5초 이하로 단축</li>
+            <li>앱 로그 기준 QR 인증 소요 시간을 1초 이상에서 0.5초 이하로 단축 (CameraX·ML Kit 적용)</li>
             <li>반납 사진을 CameraX 광각으로 촬영하도록 개선해 킥보드 위치 확인 지원</li>
             <li>변경이 잦은 혜택 페이지를 WebView로 전환하고 앱 통신용 브릿지 구현</li>
             <li>최근 검색어 저장 방식을 Room에서 SharedPreferences·JSON으로 변경해 조회 시간을 약 0.5초에서 0.1초 수준으로 단축</li>
